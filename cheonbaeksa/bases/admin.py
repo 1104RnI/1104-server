@@ -16,11 +16,11 @@ from inline_actions.admin import InlineActionsModelAdminMixin
 from nested_inline.admin import NestedModelAdmin
 from rangefilter.filter import DateRangeFilter
 
-# # 어드민 사이트 기본 앱 숨기기
-# for app_config in apps.get_app_configs():
-#     for model in app_config.get_models():
-#         if admin.site.is_registered(model):
-#             admin.site.unregister(model)
+# 어드민 사이트 기본 앱 숨기기
+for app_config in apps.get_app_configs():
+    for model in app_config.get_models():
+        if admin.site.is_registered(model):
+            admin.site.unregister(model)
 
 
 def _related_field(model, lookup):
