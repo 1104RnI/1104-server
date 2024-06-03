@@ -1,6 +1,10 @@
 # Django
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import UserManager
+from django.core.exceptions import ValidationError
+
+# Utils
+from cheonbaeksa.utils.validators import validator_password
 
 
 # Main Section
@@ -24,6 +28,10 @@ class UserMainManager(UserManager):
         return self._create_user(email, password, **extra_fields)
 
     def create_user(self, email=None, password=None, **extra_fields):
+
+        # 비밀번호 유효성 검사 추가
+        validator_password(password)
+
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, password, **extra_fields)
