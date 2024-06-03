@@ -63,11 +63,11 @@ schema_url_patterns = [
 
 schema_view = get_schema_view(
     openapi.Info(
-        title=_("API 문서"),
+        title=_("1104 API Document"),
         default_version="v1",
         # description=description,
-        # contact=openapi.Contact(email="leoyunhyung@gmail.com"),
-        # license=openapi.License(name="Copyright 2022. Yunhyung Leo Lee. all rights reserved."),
+        # contact=openapi.Contact(email=""),
+        # license=openapi.License(name="Copyright 2024. Leo. all rights reserved."),
     ),
     public=public,
     permission_classes=permission_classes,

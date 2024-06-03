@@ -27,8 +27,8 @@ django.setup()
 # -- Project information -----------------------------------------------------
 
 project = "cheonbaeksa"
-copyright = """2022, Leo Yunhyung Lee"""
-author = "Leo Yunhyung Lee"
+copyright = """2024, Leo"""
+author = "Leo"
 
 
 # -- General configuration ---------------------------------------------------

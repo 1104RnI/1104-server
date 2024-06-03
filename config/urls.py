@@ -8,9 +8,9 @@ from rest_framework.authtoken.views import obtain_auth_token
 from config.docs import schema_view
 from config.redirects import redirect_admin_view, redirect_swagger_view
 
-admin.site.site_header = ""
-admin.site.site_title = ""
-admin.site.index_title = "관리자 페이지"
+admin.site.site_header = "1104"
+admin.site.site_title = "1104"
+admin.site.index_title = "1104 Admin Site"
 
 urlpatterns = (
     [
