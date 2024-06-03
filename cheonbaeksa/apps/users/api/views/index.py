@@ -12,7 +12,7 @@ from cheonbaeksa.bases.api.viewsets import GenericViewSet
 from cheonbaeksa.utils.decorators import swagger_decorator
 
 # Mixins
-from cheonbaeksa.apps.users.api.views.mixins import UserSignupViewMixin, UserLoginViewMixin
+from cheonbaeksa.apps.users.api.views.mixins import UserSignupViewMixin, UserLoginViewMixin, UserMeViewMixin
 
 # Permissions
 from cheonbaeksa.apps.users.api.views.permissions import UserPermission
@@ -27,12 +27,13 @@ from cheonbaeksa.apps.users.models import User
 # Main Section
 class UsersViewSet(UserSignupViewMixin,
                    UserLoginViewMixin,
+                   UserMeViewMixin,
                    mixins.ListModelMixin,
                    GenericViewSet):
     serializers = {
         'default': UserListSerializer,
     }
-    queryset = User.objects.all()
+    queryset = User.available.all()
     filter_backends = (DjangoFilterBackend,)
     permission_classes = (UserPermission,)
 
