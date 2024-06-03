@@ -328,14 +328,12 @@ EMAIL_TIMEOUT = 5
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Leo Yunhyung Lee""", "leoyunhyung@gmail.com")]
+ADMINS = [("""Leo""", "")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
 ADMIN_REORDER = (
-    'users', 'socialaccount', 'boards', 'posts', 'comments', 'alarms', 'utms',
-    'wedding_checks', 'wedding_check_users', 'wedding_budgets', 'wedding_budget_users',
-    'wedding_schedules', 'wedding_schedule_users'
+    'users',
 )
 
 # LOGGING
@@ -439,20 +437,3 @@ SWAGGER_SETTINGS = {
     'OPERATIONS_SORTER': 'method',
     'TAGS_SORTER': 'alpha',
 }
-
-# Kakao
-KAKAO_REST_API_KEY = env('KAKAO_REST_API_KEY', default='')
-KAKAO_CLIENT_SECRET_KEY = env('KAKAO_CLIENT_SECRET_KEY', default='')
-KAKAO_ADMIN_KEY = env('KAKAO_ADMIN_KEY', default='')
-
-kakao_login_uri = "https://kauth.kakao.com/oauth/authorize"
-kakao_token_uri = "https://kauth.kakao.com/oauth/token"
-kakao_profile_uri = "https://kapi.kakao.com/v2/user/me"
-kakao_redirect_uri = 'http://localhost:8000/api/kakao/callback'
-
-# SOLAPI
-SOLAPI_API_KEY = env("SOLAPI_API_KEY", default='')
-SOLAPI_SECRET_KEY = env("SOLAPI_SECRET_KEY", default='')
-SOLAPI_PROTOCOL = env("SOLAPI_PROTOCOL", default='https')
-SOLAPI_DOMAIN = env("SOLAPI_DOMAIN", default='api.solapi.com')
-SOLAPI_PREFIX = env("SOLAPI_PREFIX", default='')
