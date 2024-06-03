@@ -29,7 +29,7 @@ class UserMainManager(UserManager):
 
     def create_user(self, email=None, password=None, **extra_fields):
 
-        # 비밀번호 유효성 검사 추가
+        # 비밀번호 유효성 검사
         validator_password(password)
 
         extra_fields.setdefault('is_staff', False)
