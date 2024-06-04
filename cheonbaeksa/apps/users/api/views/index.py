@@ -12,7 +12,8 @@ from cheonbaeksa.bases.api.viewsets import GenericViewSet
 from cheonbaeksa.utils.decorators import swagger_decorator
 
 # Mixins
-from cheonbaeksa.apps.users.api.views.mixins import UserSignupViewMixin, UserLoginViewMixin, UserMeViewMixin
+from cheonbaeksa.apps.users.api.views.mixins import UserSignupViewMixin, UserLoginViewMixin, UserMeViewMixin, \
+    UserPasswordViewMixin, UserTradingViewViewMixin
 
 # Permissions
 from cheonbaeksa.apps.users.api.views.permissions import UserPermission
@@ -28,6 +29,8 @@ from cheonbaeksa.apps.users.models import User
 class UsersViewSet(UserSignupViewMixin,
                    UserLoginViewMixin,
                    UserMeViewMixin,
+                   UserPasswordViewMixin,
+                   UserTradingViewViewMixin,
                    mixins.ListModelMixin,
                    GenericViewSet):
     serializers = {
