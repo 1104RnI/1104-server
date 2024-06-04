@@ -1,0 +1,33 @@
+name: develop CI
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v1
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
+
+      # Runs a single command using the runners shell
+      - name: Echo
+        run: echo Start AWS deployment now!
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.APPLICATION_NAME }}
+          environment_name: ${{ secrets.ENVIRONMENT_DEV_NAME }}
+          version_label: ${{ github.sha }}
+          version_description: ${{ github.event.head_commit.message }}
+          region: ap-northeast-2
+          deployment_package: deploy.zip
+          use_existing_version_if_available: true
