@@ -9,4 +9,4 @@ from cheonbaeksa.apps.users.models.index import User
 class UserListSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'is_email_verified')
+        fields = ('id', 'email', 'is_email_verified', 'trading_view_username', 'exchange_title', 'exchange_uid')
