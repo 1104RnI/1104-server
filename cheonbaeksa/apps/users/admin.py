@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django import forms
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, UsernameField
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -13,10 +14,29 @@ from cheonbaeksa.apps.users.models.index import User
 
 
 # Define the UserChangeForm with custom validation
-class UserChangeForm(forms.ModelForm):
+class UserCustomChangeForm(forms.ModelForm):
+    password = ReadOnlyPasswordHashField(
+        label=_("Password"),
+        help_text=_(
+            'Raw passwords are not stored, so there is no way to see this '
+            'user’s password, but you can change the password using '
+            '<a href="{}">this form</a>.'
+        ),
+    )
+
     class Meta:
         model = User
         fields = '__all__'
+        field_classes = {'username': UsernameField}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        password = self.fields.get('password')
+        if password:
+            password.help_text = password.help_text.format('../password/')
+        user_permissions = self.fields.get('user_permissions')
+        if user_permissions:
+            user_permissions.queryset = user_permissions.queryset.select_related('content_type')
 
     def clean(self):
         cleaned_data = super().clean()
@@ -37,14 +57,14 @@ class UserChangeForm(forms.ModelForm):
 
 @admin.register(User)
 class UserAdmin(Admin, UserAdmin):
-    form = UserChangeForm
+    form = UserCustomChangeForm
     list_display = ('email', 'is_email_verified', 'trading_view_username', 'exchange_title', 'exchange_uid', 'is_staff')
     search_fields = ('email', 'trading_view_username', 'exchange_title', 'exchange_uid')
     list_filter = ('is_staff', 'is_email_verified', 'exchange_title')
     ordering = ('-created',)
 
     fieldsets = (
-        ('1. 정보', {'fields': ('id', 'email', 'is_email_verified', 'auth_token')}),
+        ('1. 정보', {'fields': ('id', 'email', 'password', 'is_email_verified', 'auth_token')}),
         ('2. 추가 정보', {'fields': ('trading_view_username', 'exchange_title', 'exchange_uid')}),
         ('3. 권한', {'fields': ('is_staff',)}),
         ('4. 생성일 / 수정일', {'fields': ('created', 'modified')}),
