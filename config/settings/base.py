@@ -327,6 +327,14 @@ EMAIL_BACKEND = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
 
+EMAIL_USE_TLS = env('EMAIL_USE_TLS', default='')
+EMAIL_PORT = env('EMAIL_PORT', default='')
+EMAIL_HOST = env('EMAIL_HOST', default='')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
@@ -392,7 +400,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
-    "EXCEPTION_HANDLER": "cheonbaeksa.utils.exception_handlers.custom_exception_handler",
+    "EXCEPTION_HANDLER": "cheonbaeksa.utils.exceptions.custom_exception_handler",
     "NON_FIELD_ERRORS_KEY": "non_field_errors",
 }
 
@@ -404,7 +412,7 @@ CORS_ALLOW_METHODS = default_methods
 # ------------------------------------------------------------------------------
 
 # django-health-check
-# ------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # https://pypi.org/project/django-health-check/
 HEALTH_CHECK = {
     "DISK_USAGE_MAX": 90,  # percent
@@ -412,7 +420,7 @@ HEALTH_CHECK = {
 }
 
 # django-phonenumber-field
-# --------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # https://github.com/stefanfoulis/django-phonenumber-field
 PHONENUMBER_DEFAULT_REGION = "KR"
 PHONENUMBER_DEFAULT_FORMAT = "NATIONAL"
@@ -424,7 +432,7 @@ ADMIN_CHARTS_NVD3_CSS_PATH = "bow/nvd3/build/nv.d3.css"
 ADMIN_CHARTS_D3_JS_PATH = "bow/d3/d3.js"
 
 # drf-yasg
-# ------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # https://drf-yasg.readthedocs.io/en/stable/settings.html
 SWAGGER_SETTINGS = {
     "DEFAULT_AUTO_SCHEMA_CLASS": "cheonbaeksa.utils.api.schema.CustomAutoSchema",
@@ -443,6 +451,8 @@ SWAGGER_SETTINGS = {
     'TAGS_SORTER': 'alpha',
 }
 
+# JWT
+# ------------------------------------------------------------------------------
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     default="",
