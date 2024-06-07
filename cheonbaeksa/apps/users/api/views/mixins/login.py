@@ -21,7 +21,13 @@ from cheonbaeksa.apps.users.api.serializers import UserLoginSuccessSerializer, U
 class UserLoginViewMixin:
     @swagger_auto_schema(**swagger_decorator(tag='유저',
                                              id='이메일 로그인',
-                                             description='',
+                                             description="""
+
+                                             이메일과 비밀번호를 사용하여 로그인합니다. 성공적으로 로그인하면 JWT 토큰을 반환합니다.
+                                             응답에서 받은 access 토큰은 모든 보호된 API 요청의 Authorization 헤더에 Bearer prefix와 함께 추가해야 합니다.
+                                             예시: Authorization: Bearer <access_token>
+
+                                             """,
                                              request=UserLoginSerializer,
                                              response={200: UserLoginSuccessSerializer},
                                              ))

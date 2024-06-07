@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 # Python
 import environ
+from datetime import timedelta
 
 # Django
 from django.utils.translation import ugettext_lazy as _
@@ -117,6 +118,9 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    # jwt
+    'rest_framework_simplejwt',
+
     # Django Model
     "phonenumber_field",
 
@@ -385,6 +389,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "EXCEPTION_HANDLER": "cheonbaeksa.utils.exception_handlers.custom_exception_handler",
@@ -436,4 +441,22 @@ SWAGGER_SETTINGS = {
     },
     'OPERATIONS_SORTER': 'method',
     'TAGS_SORTER': 'alpha',
+}
+
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY",
+    default="",
+)
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
