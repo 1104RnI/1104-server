@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>1104 R&I 회원가입 이메일 인증 코드</title>
+    </head>
+    <body>
+        <!-- OUTERMOST CONTAINER TABLE -->
+        <table
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="100%"
+            id="bodyTable"
+            style="
+                font-family: Arial, sans-serif;
+                background-color: #ededed;
+                margin: 0 auto;
+                height: 40rem;
+                text-align: center;
+                word-break: keep-all;
+                border-radius: 1rem;
+            "
+        >
+            <tr>
+                <td>
+                    <!-- 600px - 800px CONTENTS CONTAINER TABLE -->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="600"
+                        class="container"
+                        style="
+                            width: 18rem;
+                            margin: 0 auto;
+                            padding: 1.5rem;
+                            padding-bottom: 1rem;
+                            border-radius: 1rem;
+                            background-color: #ffffff;
+                        "
+                    >
+                        <tr>
+                            <td>
+                                <h3
+                                    id="subheading"
+                                    style="
+                                        width: 100%;
+                                        font-size: 1.25rem;
+                                        line-height: 0;
+                                        margin-top: 1.5rem;
+                                    "
+                                >
+                                    1104 R&I
+                                </h3>
+                                <h1
+                                    id="heading"
+                                    style="
+                                        width: 100%;
+                                        font-size: 1.75rem;
+                                        line-height: 100%;
+                                        margin-bottom: 2.5rem;
+                                        margin-top: 1rem;
+                                    "
+                                >
+                                    이메일 인증
+                                </h1>
+                                <p
+                                    id="bodyText"
+                                    style="
+                                        width: 100%;
+                                        font-size: 1rem;
+                                        line-height: 160%;
+                                        margin-bottom: 1rem;
+                                        margin-top: 1rem;
+                                        text-align: left;
+                                    "
+                                >
+                                    홈페이지로 돌아가 아래의 인증 코드 여섯 자리를 입력해 주세요.
+                                </p>
+                                <div
+                                    class="code-container"
+                                    style="
+                                        box-sizing: border-box;
+                                        width: 100%;
+                                        background-color: #ededed;
+                                        padding: 1rem 1.5rem;
+                                        text-decoration: none !important;
+                                        font-size: 2rem;
+                                        font-weight: bold !important;
+                                        color: #151515 !important;
+                                        border-radius: 0.5rem;
+                                        margin-bottom: 1rem;
+                                        margin-top: 1rem;
+                                        text-align: center !important;
+                                    "
+                                >
+                                    {{ verification_code }}
+                                </div>
+                                <a
+                                    href="mailto:5010.cs.kr@5010.tech?subject"
+                                    ="회원가입%20관련%20문의"
+                                    style="
+                                        text-decoration: underline;
+                                        color: #00a3ff !important;
+                                        font-size: 0.75rem;
+                                        margin-bottom: 1rem !important;
+                                    "
+                                    >수신 거부 및 회원 가입에 문제가 있으시다면 이 링크를 클릭하여
+                                    연락해 주세요.</a
+                                >
+                                <p
+                                    id="caption"
+                                    style="
+                                        width: 100%;
+                                        font-size: 0.75rem;
+                                        color: #a4a4a4;
+                                        line-height: 160%;
+                                        margin-top: 1rem;
+                                    "
+                                >
+                                    Copyright&copy; 1104R&I. All rights reserved.
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
