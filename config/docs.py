@@ -72,7 +72,8 @@ public = bool(settings.DJANGO_ENV in ('local',))
 if settings.DJANGO_ENV == "local":
     permission_classes = (permissions.AllowAny,)
 else:
-    permission_classes = (permissions.IsAdminUser,)
+    # permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.AllowAny,)
 
 schema_url_patterns = [
     path(r"^api/", include("config.api_router")),
