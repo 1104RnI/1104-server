@@ -346,7 +346,7 @@ ADMINS = [("""Leo""", "")]
 MANAGERS = ADMINS
 
 ADMIN_REORDER = (
-    'users',
+    'users', 'verifications',
 )
 
 # LOGGING
