@@ -1,0 +1,1 @@
+from cheonbaeksa.apps.verifications.api.serializers.list import EmailVerificationListSerializer
