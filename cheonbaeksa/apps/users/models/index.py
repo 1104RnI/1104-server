@@ -18,20 +18,20 @@ from cheonbaeksa.apps.users.models.managers.objects import UserMainManager
 class User(AbstractUser,
            Model):
     # Main
-    email = models.EmailField(_('이메일'), unique=True,
+    email = models.EmailField(verbose_name=_('이메일'), unique=True,
                               error_messages={'unique': _('이미 사용중인 이메일 입니다.')})
 
-    # Bool
-    is_email_verified = models.BooleanField(_('이메일 인증 여부'), default=False)
+    # Boolean
+    is_email_verified = models.BooleanField(verbose_name=_('회원가입 이메일 인증 여부'), default=False)
 
     # Add Info
-    trading_view_username = models.CharField(_('트레이딩뷰 닉네임'), max_length=100, blank=True)
-    exchange_title = models.CharField(_('거래소 타이틀'), max_length=100, blank=True)
-    exchange_uid = models.CharField(_('거래소 UID'), max_length=100, blank=True)
+    trading_view_username = models.CharField(verbose_name=_('트레이딩뷰 닉네임'), max_length=100, blank=True)
+    exchange_title = models.CharField(verbose_name=_('거래소 타이틀'), max_length=100, blank=True)
+    exchange_uid = models.CharField(verbose_name=_('거래소 UID'), max_length=100, blank=True)
 
     # Not use
-    phone = PhoneNumberField(_('전화'), max_length=20, blank=True)
-    username = models.CharField(_('닉네임'), max_length=20, blank=True)
+    phone = PhoneNumberField(verbose_name=_('전화'), max_length=20, blank=True)
+    username = models.CharField(verbose_name=_('닉네임'), max_length=20, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
