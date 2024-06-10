@@ -66,14 +66,15 @@ description = _(
 )
 
 # Only expose to public in local and development.
-public = bool(settings.DJANGO_ENV in ('local',))
+public = bool(settings.DJANGO_ENV in ('local', 'develop'))
+# public = bool(settings.DJANGO_ENV in ('local',))
 
 # Fully exposed to only for local, else at least should be staff.
 if settings.DJANGO_ENV == "local":
     permission_classes = (permissions.AllowAny,)
 else:
-    # permission_classes = (permissions.IsAdminUser,)
     permission_classes = (permissions.AllowAny,)
+    # permission_classes = (permissions.IsAdminUser,)
 
 schema_url_patterns = [
     path(r"^api/", include("config.api_router")),
