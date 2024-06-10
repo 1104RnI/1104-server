@@ -1,0 +1,1 @@
+from cheonbaeksa.apps.verifications.api.views.permissions.index import EmailVerificationPermission
