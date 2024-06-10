@@ -41,6 +41,9 @@ class UserLoginViewMixin:
         if not user:
             raise AuthenticationFailed('이메일, 또는 비밀번호가 잘못되었습니다.')
 
+        if hasattr(user, 'is_email_verified') and not user.is_email_verified:
+            raise AuthenticationFailed('이메일 인증이 완료되지 않았습니다.')
+
         return Response(
             status=status.HTTP_200_OK,
             code=200,

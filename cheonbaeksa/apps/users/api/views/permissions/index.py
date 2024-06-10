@@ -12,8 +12,4 @@ class UserPermission(BasePermission):
         ] and request.user.is_anonymous:
             return False
 
-        # 이메일 인증이 완료되지 않은 사용자는 접근을 제한합니다.
-        if request.user.is_authenticated and not request.user.is_email_verified:
-            return False
-
         return True
