@@ -9,4 +9,4 @@ from cheonbaeksa.apps.verifications.models import EmailVerification
 class EmailVerificationListSerializer(ModelSerializer):
     class Meta:
         model = EmailVerification
-        fields = ('id', 'user', 'email', 'code', 'purpose', 'created', 'expired')
+        fields = ('id', 'user', 'email', 'code', 'purpose', 'is_verified', 'created', 'expired')

@@ -8,6 +8,7 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 
 # DRF
+from rest_framework.exceptions import ValidationError
 from rest_framework import status
 from rest_framework.decorators import action
 
@@ -39,6 +40,11 @@ class EmailVerificationSignupEmailViewMixin:
     @action(detail=False, methods=['post'], url_path='signup')
     def signup_email(self, request, *args, **kwargs):
         user = request.user
+
+        # 이메일 인증이 이미 완료된 경우
+        if user.is_email_verified:
+            raise ValidationError(_('이미 이메일 인증이 완료되었습니다.'))
+
         email = user.email
         purpose = 'SIGNUP'
 
