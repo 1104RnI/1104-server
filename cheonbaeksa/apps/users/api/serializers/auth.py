@@ -21,7 +21,7 @@ class UserLoginSuccessSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'token')
+        fields = ('email', 'is_email_verified', 'token')
 
     def get_token(self, obj):
         token = TokenObtainPairSerializer.get_token(obj)
