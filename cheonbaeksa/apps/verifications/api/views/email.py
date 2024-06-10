@@ -15,7 +15,8 @@ from cheonbaeksa.utils.decorators import swagger_decorator
 from cheonbaeksa.apps.verifications.api.views.permissions import EmailVerificationPermission
 
 # Mixins
-from cheonbaeksa.apps.verifications.api.views.mixins import EmailVerificationSignupViewMixin
+from cheonbaeksa.apps.verifications.api.views.mixins import EmailVerificationSignupEmailViewMixin, \
+    EmailVerificationSignupEmailVerifyViewMixin
 
 # Serializers
 from cheonbaeksa.apps.verifications.api.serializers import EmailVerificationListSerializer
@@ -25,7 +26,8 @@ from cheonbaeksa.apps.verifications.models import EmailVerification
 
 
 # Main Section
-class EmailVerificationsViewSet(EmailVerificationSignupViewMixin,
+class EmailVerificationsViewSet(EmailVerificationSignupEmailViewMixin,
+                                EmailVerificationSignupEmailVerifyViewMixin,
                                 mixins.ListModelMixin,
                                 GenericViewSet):
     serializers = {
