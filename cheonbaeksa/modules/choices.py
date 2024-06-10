@@ -1,7 +1,8 @@
 from model_utils import Choices
 from django.utils.translation import gettext_lazy as _
 
-GENDER_CHOICES = Choices(
-    ('MALE', _('남성')),
-    ('FEMALE', _('여성')),
+PURPOSE_CHOICES = Choices(
+    ('SIGNUP', _('회원가입')),
+    ('PASSWORD_RESET', _('비밀번호 변경')),
+    ('PASSWORD_RECOVERY', _('비밀번호 찾기')),
 )
