@@ -165,6 +165,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "cheonbaeksa.apps.users.apps.UsersConfig",
+    "cheonbaeksa.apps.verifications.apps.VerificationsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
