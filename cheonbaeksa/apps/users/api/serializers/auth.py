@@ -25,7 +25,7 @@ class UserLoginSuccessSerializer(ModelSerializer):
 
     def get_token(self, obj):
         token = TokenObtainPairSerializer.get_token(obj)
-        refresh_token = str(token)
-        access_token = str(token.access_token)
+        access = str(token.access_token)
+        refresh = str(token)
 
-        return {'refresh_token': refresh_token, 'access_token': access_token}
+        return {'access': access, 'refresh': refresh}
