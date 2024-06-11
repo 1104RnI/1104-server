@@ -120,6 +120,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     # jwt
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 
     # Django Model
     "phonenumber_field",
@@ -460,8 +461,8 @@ SECRET_KEY = env(
 )
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(hours=8),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'ALGORITHM': 'HS256',
@@ -470,4 +471,8 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_BLACKLIST': {
+        'ENABLED': True,
+        'BLACKLIST_AFTER_ROTATION': True,
+    }
 }
