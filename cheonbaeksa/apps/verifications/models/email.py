@@ -62,7 +62,7 @@ class EmailVerification(Model):
         ).count()
 
         if recent_attempts_count >= 1:  # 1분 내에 생성된 객체가 있으면 예외 발생
-            raise ValidationError('Too many requests in a short period. Please try again later.')
+            raise ValidationError('1분 후 다시 시도해 주세요.')
 
         # 새로운 코드를 생성
         new_code = cls(

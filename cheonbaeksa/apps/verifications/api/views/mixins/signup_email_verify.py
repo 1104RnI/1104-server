@@ -30,7 +30,7 @@ class EmailVerificationSignupEmailVerifyViewMixin:
                                              id='회원가입 이메일 인증 검증',
                                              description='이메일로 받은 인증 코드를 검증합니다.',
                                              request=EmailVerificationUpdateSerializer,
-                                             response={200: UserLoginSuccessSerializer, 400: 'Invalid code'}
+                                             response={200: UserLoginSuccessSerializer}
                                              ))
     @action(detail=False, methods=['post'], url_path='signup/verify')
     def signup_email_verify(self, request, *args, **kwargs):
@@ -71,6 +71,6 @@ class EmailVerificationSignupEmailVerifyViewMixin:
                         data=UserLoginSuccessSerializer(instance=user).data
                     )
                 else:
-                    raise ValidationError(_('Invalid code'))
+                    raise ValidationError(_('잘못된 코드이거나 코드가 만료되었습니다.'))
             except EmailVerification.DoesNotExist:
-                raise ValidationError(_('Invalid code'))
+                raise ValidationError(_('잘못된 코드이거나 코드가 만료되었습니다.'))
