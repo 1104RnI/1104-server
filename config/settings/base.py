@@ -120,7 +120,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     # jwt
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
 
     # Django Model
     "phonenumber_field",
@@ -471,8 +470,4 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_BLACKLIST': {
-        'ENABLED': True,
-        'BLACKLIST_AFTER_ROTATION': True,
-    }
 }
