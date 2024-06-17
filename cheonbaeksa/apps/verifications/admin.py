@@ -17,7 +17,7 @@ class EmailVerificationAdmin(Admin):
 
     fieldsets = (
         ('1. 정보', {'fields': ('user', 'email', 'code', 'purpose', 'is_verified',)}),
-        ('2. 날짜', {'fields': ('created', 'expired')}),
+        ('2. 날짜', {'fields': ('created', 'modified', 'expired')}),
     )
 
-    readonly_fields = ('created', 'expired')
+    readonly_fields = ('created', 'modified', 'expired')
