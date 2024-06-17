@@ -1,2 +1,1 @@
-from cheonbaeksa.apps.verifications.api.serializers.list import EmailVerificationListSerializer
 from cheonbaeksa.apps.verifications.api.serializers.update import EmailVerificationUpdateSerializer
