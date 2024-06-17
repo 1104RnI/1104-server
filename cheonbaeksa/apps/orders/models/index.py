@@ -30,9 +30,9 @@ def generate_unique_number():
 # Main Section
 class Order(Model):
     STATUS = Choices(
-        ('PENDING', '진행'),
-        ('APPROVED', '승인'),
-        ('REFUSED', '거절'),
+        ('PENDING', _('진행')),
+        ('APPROVED', _('승인')),
+        ('REFUSED', _('거절')),
     )
 
     # FK
@@ -45,10 +45,10 @@ class Order(Model):
     total_price = models.DecimalField(verbose_name=_('총 가격'), max_digits=10, decimal_places=2)
 
     # Status
-    status = StatusField(_('상태'), null=True, default=None)
-    pending_at = MonitorField(_('진행 시간'), monitor='status', when=['PENDING'], default=None, null=True)
-    approved_at = MonitorField(_('승인 시간'), monitor='status', when=['APPROVED'], default=None, null=True)
-    refused_at = MonitorField(_('거절 시간'), monitor='status', when=['REFUSED'], default=None, null=True)
+    status = StatusField(verbose_name=_('상태'), default=None, null=True)
+    pending_at = MonitorField(verbose_name=_('진행 시간'), monitor='status', when=['PENDING'], default=None, null=True)
+    approved_at = MonitorField(verbose_name=_('승인 시간'), monitor='status', when=['APPROVED'], default=None, null=True)
+    refused_at = MonitorField(verbose_name=_('거절 시간'), monitor='status', when=['REFUSED'], default=None, null=True)
 
     class Meta:
         verbose_name = verbose_name_plural = _('주문')
