@@ -13,7 +13,7 @@ from cheonbaeksa.utils.api.response import Response
 from cheonbaeksa.utils.decorators import swagger_decorator
 
 # Serializers
-from cheonbaeksa.apps.orders.api.serializers import OrderCreateSerializer
+from cheonbaeksa.apps.orders.api.serializers import OrderCreateSerializer, OrderRetrieveSerializer
 
 # Models
 from cheonbaeksa.apps.orders.models import Order
@@ -26,7 +26,7 @@ class ProductOrderViewMixin:
                                              id='상품 주문',
                                              description='',
                                              request=OrderCreateSerializer,
-                                             response={201: 'ok'},
+                                             response={201: OrderRetrieveSerializer},
                                              ))
     @action(methods=['post'], detail=True, url_path='order', url_name='product_order')
     def product_order(self, request, pk=None):
@@ -51,5 +51,5 @@ class ProductOrderViewMixin:
             status=status.HTTP_201_CREATED,
             code=201,
             message=_('ok'),
-            data={'order_id': order.id}
+            data=OrderRetrieveSerializer(instance=order).data
         )
