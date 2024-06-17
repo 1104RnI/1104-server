@@ -474,3 +474,9 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
+
+# PORTONE
+# ------------------------------------------------------------------------------
+PORTONE_SERVER_HOST = env('PORTONE_SERVER_HOST', default='')
+PORTONE_IMP_KEY = env('PORTONE_IMP_KEY', default='')
+PORTONE_IMP_SECRET = env('PORTONE_IMP_SECRET', default='')
