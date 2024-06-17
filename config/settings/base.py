@@ -164,6 +164,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "cheonbaeksa.apps.coupons.apps.CouponsConfig",
+    "cheonbaeksa.apps.products.apps.ProductsConfig",
     "cheonbaeksa.apps.users.apps.UsersConfig",
     "cheonbaeksa.apps.verifications.apps.VerificationsConfig",
 ]
@@ -346,7 +348,7 @@ ADMINS = [("""Leo""", "")]
 MANAGERS = ADMINS
 
 ADMIN_REORDER = (
-    'users', 'verifications',
+    'users', 'verifications', 'products', 'coupons'
 )
 
 # LOGGING
