@@ -29,7 +29,7 @@ from cheonbaeksa.apps.coupons.models import Coupon
 class ProductOrderViewMixin:
     @swagger_auto_schema(**swagger_decorator(tag='상품',
                                              id='상품 주문',
-                                             description='',
+                                             description='상품을 주문합니다. 적용할 쿠폰 코드가 없으면 빈 객체를 보냅니다.',
                                              request=OrderCreateSerializer,
                                              response={201: OrderRetrieveSerializer},
                                              ))

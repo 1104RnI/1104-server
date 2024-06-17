@@ -23,7 +23,7 @@ from cheonbaeksa.apps.coupons.models import Coupon
 class CouponValidateViewMixin:
     @swagger_auto_schema(**swagger_decorator(tag='쿠폰',
                                              id='쿠폰 유효성 검사',
-                                             description='',
+                                             description='입력된 쿠폰 코드를 유효성 검사합니다. 유효한 쿠폰 코드인 경우, 쿠폰의 ID를 반환합니다.',
                                              request=CouponValidateSerializer,
                                              response={200: 'ok'},
                                              ))
