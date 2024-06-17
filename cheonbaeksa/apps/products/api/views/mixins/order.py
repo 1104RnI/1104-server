@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 # DRF
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.exceptions import AuthenticationFailed
 
 # Third Party
 from drf_yasg.utils import swagger_auto_schema
@@ -11,6 +12,10 @@ from drf_yasg.utils import swagger_auto_schema
 # Utils
 from cheonbaeksa.utils.api.response import Response
 from cheonbaeksa.utils.decorators import swagger_decorator
+from cheonbaeksa.utils.portone import get_portone_access_token
+
+# Modules
+from cheonbaeksa.modules.gateways.portone import gateway as gateway_portone
 
 # Serializers
 from cheonbaeksa.apps.orders.api.serializers import OrderCreateSerializer, OrderRetrieveSerializer
@@ -44,12 +49,26 @@ class ProductOrderViewMixin:
         else:
             total_price = product.price
 
-        order = Order.objects.create(user_id=user.id, product_id=product.id, coupon_id=coupon_id,
-                                     total_price=total_price,
-                                     status='PENDING')
+        instance = Order.objects.create(user_id=user.id, product_id=product.id, coupon_id=coupon_id,
+                                        total_price=total_price,
+                                        status='PENDING')
+
+        # PG Payment 요청 전에, Payment 위,변조를 막기 위한 사전 검증이 필요함.
+        # GET PortOne Access Token
+        portone_access_token = get_portone_access_token()
+
+        # API GATEWAY
+        response = gateway_portone.check_payment(portone_access_token=portone_access_token,
+                                                 order_number=instance.number,
+                                                 total_price=total_price)
+        print('response : ', response)
+
+        if response['code'] != 0:
+            raise AuthenticationFailed(response['message'])
+
         return Response(
             status=status.HTTP_201_CREATED,
             code=201,
             message=_('ok'),
-            data=OrderRetrieveSerializer(instance=order).data
+            data=OrderRetrieveSerializer(instance=instance).data
         )
