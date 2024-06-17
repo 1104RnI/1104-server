@@ -2,8 +2,6 @@
 from django.contrib import admin
 
 # Bases
-from rest_framework.exceptions import ValidationError
-
 from cheonbaeksa.bases.admin import Admin
 
 # Models
