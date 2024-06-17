@@ -52,6 +52,21 @@ class Coupon(Model):
         verbose_name = verbose_name_plural = _('쿠폰')
         ordering = ['-created']
 
+    @staticmethod
+    def validate_code(value):
+        try:
+            coupon = Coupon.objects.get(code=value)
+        except Coupon.DoesNotExist:
+            raise ValidationError("유효하지 않은 쿠폰 코드입니다.")
+
+        if coupon.is_used:
+            raise ValidationError("이미 사용된 쿠폰 코드입니다.")
+
+        if coupon.expired and coupon.expired < timezone.now():
+            raise ValidationError("만료된 쿠폰 코드입니다.")
+
+        return coupon
+
     def clean(self):
         if self.coupon_group_id:
             try:
@@ -70,10 +85,6 @@ class Coupon(Model):
             raise ValidationError('쿠폰 그룹을 설정해야 합니다.')
 
     def save(self, *args, **kwargs):
-
-        print('discount_price : ', self.discount_price)
-        print('discount_percentage : ', self.discount_percentage)
-
         if not self.expired:
             try:
                 coupon_group = CouponGroup.objects.get(id=self.coupon_group_id)
