@@ -2,11 +2,10 @@
 from django.contrib import admin
 
 # Bases
-from cheonbaeksa.apps.payments.models import Payment
 from cheonbaeksa.bases.admin import Admin
 
 # Models
-from cheonbaeksa.apps.products.models import Product
+from cheonbaeksa.apps.payments.models import Payment
 
 
 # Main Section
@@ -17,7 +16,7 @@ class PaymentAdmin(Admin):
     list_filter = ('status',)
 
     fieldsets = (
-        ('1. 정보', {'fields': ('user_id', 'order_id', 'imp_uid', 'total_price')}),
+        ('1. 정보', {'fields': ('user_id', 'order_id', 'imp_uid', 'order_number', 'total_price')}),
         ('2. 상태', {'fields': ('status', 'prepared_at', 'failed_at', 'paid_at', 'partial_cancelled_at',
                               'cancelled_at')}),
         ('3. 데이터', {'fields': ('pg_data',)}),
