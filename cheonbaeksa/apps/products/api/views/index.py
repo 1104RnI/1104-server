@@ -24,6 +24,7 @@ from cheonbaeksa.apps.products.models import Product
 from cheonbaeksa.utils.decorators import swagger_decorator
 
 
+# Main Section
 class ProductsViewSet(ProductOrderViewMixin,
                       mixins.ListModelMixin,
                       GenericViewSet):
