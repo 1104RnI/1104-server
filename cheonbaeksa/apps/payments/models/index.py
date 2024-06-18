@@ -24,6 +24,7 @@ class Payment(Model):
 
     # Main
     imp_uid = models.CharField(_('포트원 결제 UID'), max_length=20, null=True, blank=True)
+    order_number = models.CharField(verbose_name=_('주문 번호'), max_length=20)
     total_price = models.DecimalField(verbose_name=_('총 가격'), max_digits=10, decimal_places=2)
 
     # Status
