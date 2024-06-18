@@ -19,6 +19,9 @@ from cheonbaeksa.apps.users.api.views import CustomTokenRefreshView
 # EmailVerification
 from cheonbaeksa.apps.verifications.api.views import EmailVerificationsViewSet
 
+# Order
+from cheonbaeksa.apps.orders.api.views import OrdersViewSet
+
 # Router
 router = routers.SimpleRouter(trailing_slash=False)
 
@@ -33,6 +36,9 @@ router.register('coupons', CouponsViewSet)
 
 # Product
 router.register('products', ProductsViewSet)
+
+# Product
+router.register('orders', OrdersViewSet)
 
 app_name = 'api'
 urlpatterns = [
