@@ -53,19 +53,6 @@ class ProductOrderViewMixin:
                                         total_price=total_price,
                                         status='PENDING')
 
-        # PG Payment 요청 전에, Payment 위,변조를 막기 위한 사전 검증이 필요함.
-        # GET PortOne Access Token
-        portone_access_token = get_portone_access_token()
-
-        # API GATEWAY
-        response = gateway_portone.check_payment(portone_access_token=portone_access_token,
-                                                 order_number=instance.number,
-                                                 total_price=total_price)
-        print('response : ', response)
-
-        if response['code'] != 0:
-            raise AuthenticationFailed(response['message'])
-
         return Response(
             status=status.HTTP_201_CREATED,
             code=201,
