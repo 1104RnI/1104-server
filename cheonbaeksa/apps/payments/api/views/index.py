@@ -1,3 +1,22 @@
-from django.shortcuts import render
+# Django
+from django_filters.rest_framework import DjangoFilterBackend
 
-# Create your views here.
+# Bases
+from cheonbaeksa.bases.api.viewsets import GenericViewSet
+
+# Mixins
+from cheonbaeksa.apps.payments.api.views.mixins import PaymentConfirmViewMixin
+
+# Permissions
+from cheonbaeksa.apps.payments.api.views.permissions import PaymentPermission
+
+# Models
+from cheonbaeksa.apps.payments.models import Payment
+
+
+# Main Section
+class PaymentsViewSet(PaymentConfirmViewMixin,
+                      GenericViewSet):
+    queryset = Payment.available.all()
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (PaymentPermission,)
