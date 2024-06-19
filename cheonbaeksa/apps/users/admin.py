@@ -58,14 +58,14 @@ class UserCustomChangeForm(forms.ModelForm):
 @admin.register(User)
 class UserAdmin(Admin, UserAdmin):
     form = UserCustomChangeForm
-    list_display = ('email', 'is_email_verified', 'trading_view_username', 'exchange_title', 'exchange_uid', 'is_staff')
-    search_fields = ('email', 'trading_view_username', 'exchange_title', 'exchange_uid')
-    list_filter = ('is_staff', 'is_email_verified', 'exchange_title')
+    list_display = ('email', 'is_email_verified', 'advisor_id', 'is_staff')
+    search_fields = ('email', 'advisor_id')
+    list_filter = ('is_staff', 'advisor_id', 'is_email_verified')
     ordering = ('-created',)
 
     fieldsets = (
-        ('1. 정보', {'fields': ('id', 'email', 'password', 'is_email_verified', 'auth_token')}),
-        ('2. 추가 정보', {'fields': ('trading_view_username', 'exchange_title', 'exchange_uid')}),
+        ('1. 정보', {'fields': ('id', 'email', 'password', 'is_email_verified',)}),
+        ('2. 어드바이저', {'fields': ('advisor_id',)}),
         ('3. 권한', {'fields': ('is_staff',)}),
         ('4. 생성일 / 수정일', {'fields': ('created', 'modified')}),
     )
@@ -75,4 +75,4 @@ class UserAdmin(Admin, UserAdmin):
         ('2. 권한', {'fields': ('is_staff',)}),
     )
 
-    readonly_fields = ('auth_token', 'created', 'modified', 'is_email_verified')
+    readonly_fields = ('created', 'modified', 'is_email_verified')
