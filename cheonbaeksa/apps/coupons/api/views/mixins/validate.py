@@ -9,7 +9,7 @@ from rest_framework.decorators import action
 from drf_yasg.utils import swagger_auto_schema
 
 # Serializers
-from cheonbaeksa.apps.coupons.api.serializers import CouponValidateSerializer
+from cheonbaeksa.apps.coupons.api.serializers import CouponValidateSerializer, CouponRetrieveSerializer
 
 # Utils
 from cheonbaeksa.utils.api.response import Response
@@ -25,15 +25,15 @@ class CouponValidateViewMixin:
                                              id='쿠폰 유효성 검사',
                                              description='입력된 쿠폰 코드를 유효성 검사합니다. 유효한 쿠폰 코드인 경우, 쿠폰의 ID를 반환합니다.',
                                              request=CouponValidateSerializer,
-                                             response={200: 'ok'},
+                                             response={200: CouponRetrieveSerializer},
                                              ))
     @action(methods=['post'], detail=False, url_path='check', url_name='coupon_check')
     def coupon_check(self, request):
         code = request.data.get('code')
-        coupon = Coupon.validate_code(code)
+        instance = Coupon.validate_code(code)
         return Response(
             status=status.HTTP_200_OK,
             code=200,
             message=_('ok'),
-            data={'id': coupon.id}
+            data=CouponRetrieveSerializer(instance=instance).data
         )
