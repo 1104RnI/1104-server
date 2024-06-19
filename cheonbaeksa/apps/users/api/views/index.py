@@ -20,7 +20,6 @@ class UsersViewSet(UserSignupViewMixin,
                    UserLoginViewMixin,
                    UserMeViewMixin,
                    UserPasswordViewMixin,
-                   UserTradingViewViewMixin,
                    GenericViewSet):
     queryset = User.available.all()
     filter_backends = (DjangoFilterBackend,)
