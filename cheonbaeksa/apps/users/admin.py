@@ -71,8 +71,8 @@ class UserAdmin(Admin, UserAdmin):
     )
 
     add_fieldsets = (
-        ('1. 정보', {'fields': ('email', 'name', 'password1', 'password2')}),
+        ('1. 정보', {'fields': ('email', 'password1', 'password2')}),
         ('2. 권한', {'fields': ('is_staff',)}),
     )
 
-    readonly_fields = ('created', 'modified', 'is_email_verified')
+    readonly_fields = ('created', 'modified')
