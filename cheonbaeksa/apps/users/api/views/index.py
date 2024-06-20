@@ -6,7 +6,7 @@ from cheonbaeksa.bases.api.viewsets import GenericViewSet
 
 # Mixins
 from cheonbaeksa.apps.users.api.views.mixins import UserSignupViewMixin, UserLoginViewMixin, UserMeViewMixin, \
-    UserPasswordViewMixin, UserTradingViewViewMixin
+    UserPasswordViewMixin, UserPaymentViewMixin
 
 # Permissions
 from cheonbaeksa.apps.users.api.views.permissions import UserPermission
@@ -20,6 +20,7 @@ class UsersViewSet(UserSignupViewMixin,
                    UserLoginViewMixin,
                    UserMeViewMixin,
                    UserPasswordViewMixin,
+                   UserPaymentViewMixin,
                    GenericViewSet):
     queryset = User.available.all()
     filter_backends = (DjangoFilterBackend,)
