@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from cheonbaeksa.bases.admin import Admin
 
 # Models
-from cheonbaeksa.apps.users.models.index import User
+from cheonbaeksa.apps.users.models import User
 
 
 # Define the UserChangeForm with custom validation
