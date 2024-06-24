@@ -477,8 +477,7 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
 
-# PORTONE
+# TOSS
 # ------------------------------------------------------------------------------
-PORTONE_SERVER_HOST = env('PORTONE_SERVER_HOST', default='')
-PORTONE_IMP_KEY = env('PORTONE_IMP_KEY', default='')
-PORTONE_IMP_SECRET = env('PORTONE_IMP_SECRET', default='')
+TOSS_CLIENT_KEY = env('TOSS_CLIENT_KEY', default='')
+TOSS_SECRET_KEY = env('TOSS_SECRET_KEY', default='')
