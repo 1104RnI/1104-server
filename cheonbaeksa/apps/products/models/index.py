@@ -8,6 +8,9 @@ from cheonbaeksa.bases.models import Model
 
 # Main Section
 class Product(Model):
+    # FK
+    user_id = models.IntegerField(verbose_name=_('상품을 생성한 유저의 ID'), null=True, blank=True)
+
     # Main
     title = models.CharField(verbose_name=_('타이틀'), max_length=100)
     price = models.DecimalField(verbose_name=_('가격'), max_digits=10, decimal_places=2)
