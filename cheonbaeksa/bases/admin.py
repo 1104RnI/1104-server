@@ -23,6 +23,18 @@ for app_config in apps.get_app_configs():
             admin.site.unregister(model)
 
 
+# Update fields
+def get_changed_fields(old_instance, new_instance):
+    changed_fields = []
+    for field in old_instance._meta.fields:
+        field_name = field.name
+        old_value = getattr(old_instance, field_name)
+        new_value = getattr(new_instance, field_name)
+        if old_value != new_value:
+            changed_fields.append(f"{field.verbose_name}: {old_value} -> {new_value}")
+    return changed_fields
+
+
 def _related_field(model, lookup):
     names = lookup.split("__")
     boolean = False
