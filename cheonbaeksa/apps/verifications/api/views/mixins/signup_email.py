@@ -24,9 +24,9 @@ from cheonbaeksa.apps.verifications.models import EmailVerification
 
 
 # Main Section
-class EmailVerificationSignupEmailViewMixin:
-    @swagger_auto_schema(**swagger_decorator(tag='이메일 인증',
-                                             id='회원가입 이메일 인증 생성',
+class EmailVerificationSignupViewMixin:
+    @swagger_auto_schema(**swagger_decorator(tag='이메일',
+                                             id='회원가입 인증 이메일 전송',
                                              description="""
 
                                              회원가입을 위한 이메일 인증 코드를 생성하여 사용자에게 전송합니다.
@@ -37,7 +37,7 @@ class EmailVerificationSignupEmailViewMixin:
                                              request=no_body,
                                              response={201: 'ok'}
                                              ))
-    @action(detail=False, methods=['post'], url_path='signup')
+    @action(detail=False, methods=['post'], url_path='signup-verification')
     def signup_email(self, request, *args, **kwargs):
         user = request.user
 

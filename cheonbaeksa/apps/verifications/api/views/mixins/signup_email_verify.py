@@ -25,14 +25,14 @@ from cheonbaeksa.apps.verifications.models import EmailVerification
 
 
 # Main Section
-class EmailVerificationSignupEmailVerifyViewMixin:
-    @swagger_auto_schema(**swagger_decorator(tag='이메일 인증',
-                                             id='회원가입 이메일 인증 검증',
+class EmailVerificationSignupVerifyViewMixin:
+    @swagger_auto_schema(**swagger_decorator(tag='이메일',
+                                             id='회원가입 인증 이메일 검증',
                                              description='이메일로 받은 인증 코드를 검증합니다.',
                                              request=EmailVerificationUpdateSerializer,
                                              response={200: UserLoginSuccessSerializer}
                                              ))
-    @action(detail=False, methods=['post'], url_path='signup/verify')
+    @action(detail=False, methods=['post'], url_path='signup-verification/verify')
     def signup_email_verify(self, request, *args, **kwargs):
         user = request.user
 

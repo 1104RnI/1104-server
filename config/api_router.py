@@ -34,8 +34,11 @@ router = routers.SimpleRouter(trailing_slash=False)
 # User
 router.register('users', UsersViewSet)
 
-# Verification
-router.register(r'email-verifications', EmailVerificationsViewSet)
+# EmailVerification
+router.register(r'emails', EmailVerificationsViewSet)
+
+# EmailSend
+router.register('emails/send', EmailSendsViewSet)
 
 # Coupon
 router.register('coupons', CouponsViewSet)
@@ -48,9 +51,6 @@ router.register('orders', OrdersViewSet)
 
 # Payment
 router.register('payments', PaymentsViewSet)
-
-# EmailSend
-router.register('emails/send', EmailSendsViewSet)
 
 app_name = 'api'
 urlpatterns = [
