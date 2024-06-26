@@ -52,13 +52,12 @@ class EmailSendsViewSet(mixins.CreateModelMixin,
 
         # 이메일 전송 로직
         subject = email_send.title
-        html_message = render_to_string('email_template.html', {'content': email_send.content})
-        plain_message = strip_tags(html_message)
+        plain_message = email_send.content
         from_email = email_send.sender_email
         to_email = email_send.recipient_email
 
         try:
-            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
+            send_mail(subject, plain_message, from_email, [to_email])
             email_send.status = 'SENT'
         except Exception as e:
             email_send.status = 'FAILED'
