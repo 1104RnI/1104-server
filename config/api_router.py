@@ -50,7 +50,7 @@ router.register('orders', OrdersViewSet)
 router.register('payments', PaymentsViewSet)
 
 # EmailSend
-router.register('email/sends', EmailSendsViewSet)
+router.register('emails/send', EmailSendsViewSet)
 
 app_name = 'api'
 urlpatterns = [
