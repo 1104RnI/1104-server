@@ -31,7 +31,10 @@ from cheonbaeksa.apps.orders.models import Order
 class PaymentNotifyViewMixin:
     @swagger_auto_schema(**swagger_decorator(tag='결제',
                                              id='결제 완료 알림',
-                                             description='유저가 특정 상품을 결제하면, 관리자에게 결제 내역을 이메일로 전송하는 API입니다.',
+                                             description="""
+                                             유저가 특정 상품을 결제하면, 관리자에게 결제 내역을 이메일로 전송하는 API입니다.
+                                             성공 시 status=SENT, 실패 시 status=FAILED 반환됩니다.
+                                             """,
                                              request=no_body,
                                              response={201: EmailSendRetrieveSerializer}
                                              ))
