@@ -6,7 +6,7 @@ from cheonbaeksa.apps.sends.models import EmailSend
 
 
 # Main Section
-class EmailSendCreateSerializer(ModelSerializer):
+class EmailSendRetrieveSerializer(ModelSerializer):
     class Meta:
         model = EmailSend
-        fields = ('from_email', 'to_email', 'title', 'content', 'purpose')
+        fields = ('id', 'from_email', 'to_email', 'title', 'content', 'purpose', 'status', 'created')
