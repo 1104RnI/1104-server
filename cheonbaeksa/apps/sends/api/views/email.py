@@ -1,10 +1,5 @@
-# Settings
-from config.settings.base import EMAIL_HOST_USER
-
 # Django
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 from django_filters.rest_framework import DjangoFilterBackend
 from django.utils.translation import gettext_lazy as _
 
@@ -48,13 +43,13 @@ class EmailSendsViewSet(mixins.CreateModelMixin,
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        email_send = serializer.save(sender_email=EMAIL_HOST_USER)
+        email_send = serializer.save()
 
         # 이메일 전송 로직
         subject = email_send.title
         plain_message = email_send.content
-        from_email = email_send.sender_email
-        to_email = email_send.recipient_email
+        from_email = email_send.from_email
+        to_email = email_send.to_email
 
         try:
             send_mail(subject, plain_message, from_email, [to_email])
