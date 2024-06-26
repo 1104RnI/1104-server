@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 # DRF
 from rest_framework import status
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.decorators import action
 
 # Third Party
@@ -12,10 +11,6 @@ from drf_yasg.utils import swagger_auto_schema
 # Utils
 from cheonbaeksa.utils.api.response import Response
 from cheonbaeksa.utils.decorators import swagger_decorator
-from cheonbaeksa.utils.portone import get_portone_access_token
-
-# Modules
-from cheonbaeksa.modules.gateways.portone import gateway as gateway_portone
 
 # Serializers
 from cheonbaeksa.apps.payments.api.serializers import PaymentCreateSerializer
@@ -35,22 +30,8 @@ class OrderPaymentViewMixin:
         user = request.user
         serializer = PaymentCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            instance = serializer.save(user_id=user.id, order_id=order.id, total_price=order.total_price,
-                                       order_number=order.number)
-
-            # PG Payment 요청 전에, Payment 위,변조를 막기 위한 사전 검증이 필요함.
-            # GET PortOne Access Token
-            portone_access_token = get_portone_access_token()
-
-            # API GATEWAY
-            response = gateway_portone.check_payment(portone_access_token=portone_access_token,
-                                                     order_number=instance.order_number,
-                                                     total_price=instance.total_price)
-            print('response : ', response)
-
-            if response['code'] != 0:
-                raise AuthenticationFailed(response['message'])
-
+            serializer.save(user_id=user.id, order_id=order.id, total_price=order.total_price,
+                            order_number=order.number)
             return Response(
                 status=status.HTTP_201_CREATED,
                 code=201,

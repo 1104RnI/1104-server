@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 # DRF
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.exceptions import AuthenticationFailed
 
 # Third Party
 from drf_yasg.utils import swagger_auto_schema
@@ -12,10 +11,6 @@ from drf_yasg.utils import swagger_auto_schema
 # Utils
 from cheonbaeksa.utils.api.response import Response
 from cheonbaeksa.utils.decorators import swagger_decorator
-from cheonbaeksa.utils.portone import get_portone_access_token
-
-# Modules
-from cheonbaeksa.modules.gateways.portone import gateway as gateway_portone
 
 # Serializers
 from cheonbaeksa.apps.orders.api.serializers import OrderCreateSerializer, OrderRetrieveSerializer
