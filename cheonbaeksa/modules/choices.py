@@ -7,5 +7,5 @@ PURPOSE_CHOICES = Choices(
     ('SIGNUP', _('회원가입')),
     ('PASSWORD_RESET', _('비밀번호 변경')),
     ('PASSWORD_RECOVERY', _('비밀번호 찾기')),
-    ('PAYMENT_COMPLETED', _('결제 완료')),
+    ('PAYMENT_COMPLETE', _('결제 완료')),
 )
