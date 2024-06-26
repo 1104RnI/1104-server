@@ -8,16 +8,19 @@ from cheonbaeksa.bases.api.viewsets import GenericViewSet
 from cheonbaeksa.apps.verifications.api.views.permissions import EmailVerificationPermission
 
 # Mixins
-from cheonbaeksa.apps.verifications.api.views.mixins import EmailVerificationSignupEmailViewMixin, \
-    EmailVerificationSignupEmailVerifyViewMixin
+from cheonbaeksa.apps.verifications.api.views.mixins import EmailVerificationSignupViewMixin, \
+    EmailVerificationSignupVerifyViewMixin, EmailVerificationPasswordResetViewMixin, \
+    EmailVerificationPasswordResetVerifyViewMixin
 
 # Models
 from cheonbaeksa.apps.verifications.models import EmailVerification
 
 
 # Main Section
-class EmailVerificationsViewSet(EmailVerificationSignupEmailViewMixin,
-                                EmailVerificationSignupEmailVerifyViewMixin,
+class EmailVerificationsViewSet(EmailVerificationSignupViewMixin,
+                                EmailVerificationSignupVerifyViewMixin,
+                                EmailVerificationPasswordResetViewMixin,
+                                EmailVerificationPasswordResetVerifyViewMixin,
                                 GenericViewSet):
     queryset = EmailVerification.available.all()
     filter_backends = (DjangoFilterBackend,)
