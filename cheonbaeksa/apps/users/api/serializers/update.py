@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 # DRF
 from rest_framework.exceptions import ValidationError
+from rest_framework import serializers
 
 # Bases
 from cheonbaeksa.bases.api.serializers import ModelSerializer
@@ -14,9 +15,11 @@ from cheonbaeksa.apps.users.models.index import User
 
 # Main Section
 class UserPasswordUpdateSerializer(ModelSerializer):
+    password_reset_token = serializers.CharField(required=True)
+
     class Meta:
         model = User
-        fields = ('password',)
+        fields = ('password_reset_token', 'password')
 
 
 class UserTradingViewUsernameUpdateSerializer(ModelSerializer):
