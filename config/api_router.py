@@ -37,9 +37,6 @@ router.register('users', UsersViewSet)
 # EmailVerification
 router.register(r'emails', EmailVerificationsViewSet)
 
-# EmailSend
-router.register('emails/send', EmailSendsViewSet)
-
 # Coupon
 router.register('coupons', CouponsViewSet)
 
