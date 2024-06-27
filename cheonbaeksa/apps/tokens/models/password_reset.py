@@ -15,8 +15,15 @@ from rest_framework.exceptions import ValidationError
 
 
 # Function Section
-def generate_reset_token():
+def create_token():
     return secrets.token_urlsafe(64)
+
+
+def generate_unique_token():
+    while True:
+        token = create_token()
+        if not PasswordResetToken.objects.filter(token=token).exists():
+            return token
 
 
 # Main Section
@@ -25,11 +32,15 @@ class PasswordResetToken(Model):
     token = models.CharField(max_length=128, unique=True)
     expired = models.DateTimeField(verbose_name=_('만료 시간'))
 
+    class Meta:
+        verbose_name = verbose_name_plural = _('비밀번호 리셋 토큰')
+        ordering = ['-created']
+
     @classmethod
     def create_token(cls, user):
         token = cls(
             user_id=user.id,
-            token=generate_reset_token(),
+            token=generate_unique_token(),
             expired=timezone.now() + timedelta(minutes=30)
         )
         token.save()
