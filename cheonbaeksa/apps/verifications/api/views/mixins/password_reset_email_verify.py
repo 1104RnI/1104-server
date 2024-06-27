@@ -21,6 +21,7 @@ from cheonbaeksa.apps.users.api.serializers import UserLoginSuccessSerializer
 from cheonbaeksa.apps.verifications.api.serializers import EmailVerificationUpdateSerializer
 
 # Models
+from cheonbaeksa.apps.tokens.models import PasswordResetToken
 from cheonbaeksa.apps.verifications.models import EmailVerification
 
 
@@ -61,10 +62,14 @@ class EmailVerificationPasswordResetVerifyViewMixin:
                     email_verification.is_verified = True
                     email_verification.save(update_fields=['is_verified'])
 
+                    # 비밀번호 재설정 토큰 생성
+                    password_reset_token = PasswordResetToken.create_token(user)
+
                     return Response(
                         status=status.HTTP_200_OK,
                         code=200,
                         message=_('ok'),
+                        data={'password_reset_token': password_reset_token}
                     )
                 else:
                     raise ValidationError(_('잘못된 코드이거나 코드가 만료되었습니다.'))
