@@ -170,6 +170,7 @@ LOCAL_APPS = [
     "cheonbaeksa.apps.payments.apps.PaymentsConfig",
     "cheonbaeksa.apps.products.apps.ProductsConfig",
     "cheonbaeksa.apps.sends.apps.SendsConfig",
+    "cheonbaeksa.apps.tokens.apps.TokensConfig",
     "cheonbaeksa.apps.users.apps.UsersConfig",
     "cheonbaeksa.apps.verifications.apps.VerificationsConfig",
 ]
@@ -352,7 +353,7 @@ ADMINS = [("""Leo""", "")]
 MANAGERS = ADMINS
 
 ADMIN_REORDER = (
-    'histories', 'users', 'verifications', 'products', 'coupons', 'orders', 'payments', 'sends'
+    'histories', 'users', 'verifications', 'products', 'coupons', 'orders', 'payments', 'sends', 'tokens'
 )
 
 # LOGGING
