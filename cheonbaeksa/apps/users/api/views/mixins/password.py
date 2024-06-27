@@ -52,7 +52,7 @@ class UserPasswordViewMixin:
         user.save(update_fields=['password'])
 
         # 토큰 삭제
-        PasswordResetToken.objects.filter(token=password_reset_token).delete()
+        PasswordResetToken.objects.filter(token=password_reset_token).soft_delete()
 
         return Response(
             status=status.HTTP_200_OK,
