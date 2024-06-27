@@ -25,9 +25,6 @@ from cheonbaeksa.apps.users.api.views import CustomTokenRefreshView
 # EmailVerification
 from cheonbaeksa.apps.verifications.api.views import EmailVerificationsViewSet
 
-# EmailSend
-from cheonbaeksa.apps.sends.api.views import EmailSendsViewSet
-
 # Router
 router = routers.SimpleRouter(trailing_slash=False)
 
